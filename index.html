@@ -3,358 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>四川渠县屏西乡壁峰祠张氏电子家谱</title>
-    
+    <title>张氏电子家谱 - 渠县屏西乡壁峰祠</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+        body { font-family: 'Noto Serif SC', serif; background-color: #f4f1ea; color: #333; }
+        .clan-header { background: #8b0000; color: #d4af37; border-bottom: 5px solid #d4af37; }
+        .section-title { border-left: 8px solid #8b0000; padding-left: 15px; color: #8b0000; font-weight: bold; }
         
-        body {
-            font-family: 'Noto Serif SC', serif;
-            background-color: #f6f1e6; /* 仿宣纸色 */
-            color: #333;
-            line-height: 1.8;
-        }
-
-        /* 中国风头部和标题 */
-        .clan-header {
-            background: linear-gradient(rgba(139, 0, 0, 0.9), rgba(139, 0, 0, 0.9)), 
-                        url('https://www.transparenttextures.com/patterns/p5.png');
-            color: #d4af37; /* 古典金色 */
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        }
-
-        /* 章节标题样式 */
-        .section-title {
-            border-bottom: 3px solid #8b0000;
-            color: #8b0000;
-            font-weight: 700;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* 字辈排行卡片 */
-        .generation-card {
-            background-color: #fff;
-            border: 1px solid #e0d9cc;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s;
-        }
-        .generation-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Mermaid 树状图容器 */
-        .mermaid-container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-            overflow-x: auto; /* 允许横向滚动 */
-        }
-
-        /* 统一的表格样式 */
-        table {
-            border-collapse: collapse;
+        /* 限制图表容器宽度并允许滚动 */
+        .mermaid-wrapper {
             width: 100%;
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            max-width: 1000px; /* 限制最大显示宽度 */
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            overflow-x: auto; /* 宽度不够时显示横向滚动条 */
         }
-        th {
-            background-color: #8b0000;
-            color: white;
-            font-weight: 700;
-            text-align: left;
-            padding: 1rem;
-        }
-        td {
-            border-bottom: 1px solid #eee;
-            padding: 1rem;
-        }
-        tr:last-child td {
-            border-bottom: none;
-        }
-        tr:hover td {
-            background-color: #fffaf0;
-        }
-
     </style>
 </head>
-<body class="p-0 m-0">
+<body class="p-0 m-0 text-sm md:text-base">
 
-    <nav class="bg-gray-800 text-gray-300 p-3 text-center text-sm">
-        此为电子化族谱初稿 · 整理人：张明双 (2010年5月21日核实)
-    </nav>
-
-    <header class="clan-header py-16 text-center">
-        <h1 class="text-5xl md:text-7xl font-bold mb-4">张氏电子家谱</h1>
-        <p class="text-2xl md:text-3xl italic opacity-90">四川渠县屏西乡壁峰祠 · 祖籍湖北麻城孝感</p>
+    <header class="clan-header py-10 text-center">
+        <h1 class="text-3xl md:text-5xl font-bold">张氏电子家谱</h1>
+        <p class="mt-2 opacity-90">四川渠县屏西乡壁峰祠 · 世代传承</p>
     </header>
 
-    <main class="max-w-7xl mx-auto p-6 md:p-10 space-y-16">
+    <main class="max-w-5xl mx-auto p-4 md:p-8 space-y-12">
         
         <section>
-            <h2 class="section-title text-3xl flex items-center gap-3">
-                <span>📜</span> 家族字辈排行 (四十辈)
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                
-                <div class="generation-card p-8">
-                    <h3 class="text-xl font-bold text-red-900 mb-5 border-b pb-2">前二十代 (入川祖张玉环作)</h3>
-                    <p class="text-2xl md:text-3xl leading-relaxed tracking-widest text-gray-900 font-bold text-center">
-                        玉福还相崇，碧思其大文，<br>
-                        世代明良庆，人才兆升平。
-                    </p>
+            <h2 class="section-title text-2xl mb-6">📜 家族字辈</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white p-6 shadow-sm border-t-4 border-red-800">
+                    <p class="font-bold text-red-900 mb-2 underline">前二十代 (入川祖作)</p>
+                    <p class="tracking-widest leading-loose text-lg">玉福还相崇，碧思其大文，世代明良庆，人才兆升平。</p>
                 </div>
-                
-                <div class="generation-card p-8">
-                    <h3 class="text-xl font-bold text-red-900 mb-5 border-b pb-2">后二十代 (1981年族人议定)</h3>
-                    <p class="text-2xl md:text-3xl leading-relaxed tracking-widest text-gray-900 font-bold text-center">
-                        本宗荣华远，德先正长延，<br>
-                        尚克承光志，昌隆永万年。
-                    </p>
+                <div class="bg-white p-6 shadow-sm border-t-4 border-red-800">
+                    <p class="font-bold text-red-900 mb-2 underline">后二十代 (1981议定)</p>
+                    <p class="tracking-widest leading-loose text-lg">本宗荣华远，德先正长延，尚克承光志，昌隆永万年。</p>
                 </div>
-
             </div>
+        </section>
+
+        <section>
+            <h2 class="section-title text-2xl mb-4">🌳 家族谱系图 (直线架构)</h2>
+            <p class="text-xs text-gray-500 mb-4">* 线条采用直角连接，蓝色为父子线，粉色为夫妻关系。左右拖动可查看全貌。</p>
             
-            <div class="mt-8 bg-gray-100 p-6 rounded-lg border border-gray-200 text-gray-700">
-                <p><strong>注（同音/通假说明）：</strong></p>
-                <p class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-6 gap-y-2 mt-3 text-sm">
-                    <span>人（仁）</span> <span>兆（际、继、记）</span> <span>升（太、昇）</span> <span>荣（基、缓）</span>
-                    <span>华（叶、業）</span> <span>德（得）</span> <span>先（发、伐、策）</span> <span>克（国、客）</span>
-                    <span>承（城）</span> <span>光（先）</span> <span>志（治）</span> <span>隆（发）</span>
-                </p>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title text-3xl flex items-center gap-3">
-                <span>📖</span> 家族源流与档案
-            </h2>
-            <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg border border-gray-100 prose prose-lg max-w-none prose-headings:text-red-900">
-                <p><strong>祖籍：</strong> 湖北省麻城县孝感乡高堦詹。</p>
-                <p><strong>迁徙历史：</strong> 奉张献忠令，祖辈入川。先后在四川成都、华阳、保宁、渠县老哇坝（后迁竖石沟）、渠西孟公天子山南坝等地建立分支。本支于屏西乡壁峰祠建立祠堂。</p>
-                <p><strong>本支源头：</strong> 南坝三房张其勤的后代来有庆元宝乡太阳山张家沟、曹家巷两地定居。</p>
-                
-                <h3 class="mt-10">重要档案备注：</h3>
-                <ul class="list-disc pl-6 space-y-2 text-gray-700">
-                    <li><strong>十代：</strong>张文值二十八岁时病故。其子张世立、张世卓由文值之妻夏氏抚养成人。</li>
-                    <li><strong>十二代：</strong>张代顺外出当兵到1949年终无音讯。</li>
-                    <li><strong>婚姻/转房：</strong>张代平之妻汪氏病故后，与王全珍转房成婚。</li>
-                    <li><strong>出嫁：</strong>张世卓之长女出嫁蒋宗泽；二女嫁贺正顺；三女出嫁彭继森。</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title text-3xl flex items-center gap-3">
-                <span>🌳</span> 可视化谱系架构图 (世卓支系)
-            </h2>
-            <p class="text-gray-600 mb-6">> **注：** 此图直观展示了父子代际传承（<span class="text-blue-600">青色线条</span>）与夫妻关系（<span class="text-red-600">粉色粗线条</span>）。如需查看完整表格数据，请向下滚动。</p>
-            <div class="mermaid-container">
-                <pre class="mermaid text-center">
+            <div class="mermaid-wrapper">
+                <div class="mermaid">
 graph TD
-    %% 定义样式
-    classDef ancestor fill:#8b0000,color:#fff,stroke:#333,stroke-width:2px;
-    classDef generation fill:#d4af37,color:#000,stroke:#333;
-    classDef female fill:#fff0f5,color:#333,stroke:#ff69b4,stroke-width:1px,stroke-dasharray: 5 5;
-    classDef spouse_link stroke:#ff69b4,stroke-width:3px;
-
-    %% --- 早期祖源 ---
-    祖[湖北麻城孝感] --> 环[入川祖: 张玉环]:::ancestor;
+    %% 全局配置：使用直角连线
+    %% 尽量让节点紧凑
     
-    %% --- 第八代: 其 ---
-    环 --> 勤[其字辈: 张其勤]:::generation;
+    %% 定义节点样式
+    classDef main fill:#8b0000,color:#fff,stroke:#000,stroke-width:1px;
+    classDef spouse fill:#fff,color:#d63384,stroke:#d63384,stroke-width:1px,stroke-dasharray: 2;
 
-    %% --- 第九代: 大 ---
-    勤 --> 霖[大霖]:::generation;
-    勤 --> 金[大金]:::generation;
-    勤 --> 千[大千]:::generation;
-
-    %% --- 第十代: 文 ---
-    霖 --> 值[文值]:::generation;
-    霖 --> 行[文行]:::generation;
-    值 -.-> 夏氏(夏氏抚孤):::female;
-    值 === 夏氏:::spouse_link;
-
-    %% --- 第十一代: 世 ---
-    值 --> 立[世立]:::generation;
-    值 --> 卓[世卓]:::generation;
-    立 === 范氏(范氏):::spouse_link;
-    卓 === 熊氏(熊氏):::spouse_link;
-    卓 === 周氏(周氏):::spouse_link;
-
-    %% --- 第十二代: 代 ---
-    %% 世立支
-    立 --> 代芳[代芳]; 代芳 === 李氏(李氏):::spouse_link;
-    立 --> 代芬[代芬];
-    立 --> 祥云[祥云];
-    立 --> 代裔[代裔]; 代裔 === 苏氏(苏氏):::spouse_link;
-
-    %% 世卓支
-    卓 --> 辉[代辉]:::generation; 辉 === 碧(孙嘉碧):::spouse_link;
-    卓 --> 学[代学]; 学 === 学熊(熊氏):::spouse_link;
-    卓 --> 平[代平]; 平 === 汪(汪氏病故):::spouse_link; 平 === 珍(王全珍转房):::spouse_link;
-    卓 --> 顺[代顺失联]; 顺 === 珍:::spouse_link;
-
-    卓 --> 卓女1(长女/配蒋宗泽);
-    卓 --> 卓女2(二女/配贺正顺);
-    卓 --> 卓女3(三女/配彭继森);
-
-    %% --- 第十三代: 明 ---
-    %% 代辉支
-    辉 --> 照[明照]:::generation; 照 === 运(熊运碧):::spouse_link;
-    辉 --> S荣[绍荣]; S荣 === 桂(张桂华):::spouse_link;
-    辉 --> 秀[明秀女/配赵占云];
-
-    %% 代学支
-    学 --> 绍佰[绍佰]; 学 --> 明雍(明雍女);
+    %% --- 辈分层级 ---
+    Q勤[其字辈: 张其勤]:::main
     
-    %% 代平支
-    平 --> 明海[明海]; 平 --> 明菊(明菊女); 平 --> 明文[明文];
+    Q勤 --> D霖[大霖]:::main
+    Q勤 --> D金[大金]:::main
+    Q勤 --> D千[大千]:::main
 
-    %% --- 第十四代: 良 ---
-    %% 明照支
-    照 --> 耕[良耕]:::generation; 耕 === 易(易淑英):::spouse_link;
-    照 --> 松[青松]; 松 === 袁(袁芝玉改嫁):::spouse_link;
-    照 --> J建[张建]; J建 === 梅(王汝梅):::spouse_link;
-    照 --> 芳(良芳女/配黄秀成); 照 --> 香(良香女/配魏育忠); 照 --> 芍(良芍女/配荣雪波);
+    D霖 --> W值[文值]:::main
+    D霖 --> W行[文行]:::main
 
-    %% 绍荣支
-    S荣 --> 川[良川]; 川 === 吴(吴琴):::spouse_link;
-    S荣 --> 艺[张艺]; 艺 === 李(李正英):::spouse_link; 艺 === 陈(陈燕):::spouse_link;
-    S荣 --> 勇[良勇]; 勇 === 曾(曾庆玉):::spouse_link;
-    S荣 --> 策[良策]; 策 === 龚(龚霞):::spouse_link;
+    W值 --- 夏氏(妻: 夏氏):::spouse
+    W值 --> S立[世立]:::main
+    W值 --> S卓[世卓]:::main
 
-    %% --- 第十五代: 庆 ---
-    %% 良耕支
-    耕 --> QC[庆春]; QC === 许(许祝英):::spouse_link;
-    耕 --> QF[庆丰]; QF === 刘(刘登梦):::spouse_link;
-    耕 --> QY[庆扬];
-    耕 --> 耕强[张强]; 耕强 === 汪言(汪言):::spouse_link;
+    S立 --- 范氏(妻: 范氏):::spouse
+    S立 --> 代1[代芳]
+    S立 --> 代2[代芬]
+    S立 --> 代3[祥云]
+    S立 --> 代4[代裔]
 
-    %% 张建支
-    J建 --> 素琼(素琼女/配颜林); 
-    J建 --> 英(庆英女/配任林忠);
-    J建 --> 柳[庆柳]; 柳 === 义(刘义琼):::spouse_link;
+    S卓 --- 熊周(妻: 熊/周氏):::spouse
+    S卓 --> 辉[代辉]:::main
+    S卓 --> 学[代学]
+    S卓 --> 平[代平]
+    S卓 --> 顺[代顺]
 
-    %% 良川支
-    川 --> 江[庆江];
+    辉 --- 孙氏(妻: 孙嘉碧):::spouse
+    辉 --> 照[明照]:::main
+    辉 --> 荣[绍荣]
+    辉 --> 秀(明秀女)
 
-    %% 张艺支
-    艺 --> 淼[张淼];
+    照 --- 熊碧(妻: 熊运碧):::spouse
+    照 --> 耕[良耕]:::main
+    照 --> 松[青松]
+    照 --> 建[张建]
 
-    %% --- 第十六代: 才/仁 ---
-    %% 庆春支
-    QC --> 红娟(红娟女); QC --> X鑫[张鑫];
-    
-    %% 庆丰支
-    QF --> 双(双双女); QF --> RY[仁义/海棠];
+    耕 --- 易氏(妻: 易淑英):::spouse
+    耕 --> 庆春[庆春]
+    耕 --> 庆丰[庆丰]
+    耕 --> 庆扬[庆扬]
 
-    %% 庆柳支
-    柳 --> 丹(张丹女); 柳 --> X栩鑫[栩鑫]; X栩鑫 === 郭(郭青青):::spouse_link;
+    建 --- 王氏(妻: 王汝梅):::spouse
+    建 --> 柳[庆柳]
+    建 --> 素(素琼女)
+    建 --> 英(庆英女)
 
-    %% 颜姓
-    素琼 --> 颜珊(颜珊); 素琼 --> 颜智(颜智慧); 素琼 --> 颜华(颜智华);
-
-    %% 任姓
-    英 --> 任燕(任江燕/配韩召辉); 英 --> 任凯(任凯);
-
-    %% --- 第十七代: 后续 ---
-    淼 --> 曼妮(曼妮女/2009);
-    勇 --> 曼姁(曼姁女/1997);
-    策 --> 婕(张婕女/2000);
-                </pre>
+    荣 --- 桂华(妻: 张桂华):::spouse
+    荣 --> 川[良川]
+    荣 --> 艺[张艺]
+    荣 --> 勇[良勇]
+    荣 --> 策[良策]
+                </div>
             </div>
         </section>
 
         <section>
-            <h2 class="section-title text-3xl flex items-center gap-3">
-                <span>👥</span> 详细档案名录 (至良字辈)
-            </h2>
-            <p class="text-gray-600 mb-6">> **提示：** 本表列出了谱系中关键人物的生卒信息与夫妻配偶。由于数据量大，仅展示主要分支。可以使用浏览器的查找功能 (`Ctrl+F`) 搜索族人。</p>
-            
-            <div class="overflow-x-auto rounded-xl border border-gray-100 shadow-lg">
-                <table class="w-full text-left bg-white border-collapse">
-                    <thead>
+            <h2 class="section-title text-2xl mb-6">👥 核心档案</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full bg-white border">
+                    <thead class="bg-gray-100">
                         <tr>
-                            <th>姓名</th>
-                            <th>辈分</th>
-                            <th>配偶</th>
-                            <th>生卒/备注</th>
+                            <th class="p-3 border">辈分</th>
+                            <th class="p-3 border">姓名</th>
+                            <th class="p-3 border">配偶</th>
+                            <th class="p-3 border">备注</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-100 text-sm">
-                        <tr class="font-bold text-red-900 bg-red-50">
-                            <td>张文值</td> <td>文 (十)</td> <td>夏氏</td> <td>死大霖子；28岁病故，夏氏抚孤。</td>
-                        </tr>
-                        <tr>
-                            <td>张世立</td> <td>世 (十一)</td> <td>范氏</td> <td>文值长子。代芳、代芬、祥云、代裔之父。</td>
-                        </tr>
-                        <tr>
-                            <td>张世卓</td> <td>世 (十一)</td> <td>熊氏、周氏</td> <td>文值次子。代辉、代学、代平、代顺之父。</td>
-                        </tr>
-                        <tr class="bg-gray-50">
-                            <td>张代辉</td> <td>代 (十二)</td> <td>孙嘉碧</td> <td>1907.四月初四 - 1975.三月十一病故。</td>
-                        </tr>
-                        <tr>
-                            <td>孙嘉碧 (媳)</td> <td>-</td> <td>张代辉</td> <td>1907.六月廿九 - 1978.二月初二病故。</td>
-                        </tr>
-                        <tr>
-                            <td>张代顺</td> <td>代 (十二)</td> <td>王全珍</td> <td>代卓之子；1949年当兵外流，无音讯。</td>
-                        </tr>
-                        <tr class="bg-gray-50">
-                            <td>张明照</td> <td>明 (十三)</td> <td>熊运碧</td> <td>1926.正月初四 - 1989.十月三十。长子张良耕。</td>
-                        </tr>
-                        <tr>
-                            <td>熊运碧 (媳)</td> <td>-</td> <td>张明照</td> <td>1923.六月十七 - 1987.六月廿一病故。</td>
-                        </tr>
-                        <tr>
-                            <td>张绍荣</td> <td>明 (十三)</td> <td>张桂华</td> <td>1931.四月初八生。良川、张艺、良勇、良策之父。</td>
-                        </tr>
-                        <tr>
-                            <td>张明秀</td> <td>明 (十三)</td> <td>配赵占云</td> <td>1944年农历四月十七生。</td>
-                        </tr>
-                        <tr class="bg-gray-50">
-                            <td>张良耕</td> <td>良 (十四)</td> <td>易淑英</td> <td>1945.十月二十四生。长子张庆春。</td>
-                        </tr>
-                        <tr>
-                            <td>张青松</td> <td>良 (十四)</td> <td>袁芝玉</td> <td>1931.四月初八生；病故。袁改嫁蒋启提之弟。</td>
-                        </tr>
-                        <tr>
-                            <td>张 建</td> <td>良 (十四)</td> <td>王汝梅</td> <td>1948.九月十五生。庆柳之父。</td>
-                        </tr>
-                        <tr>
-                            <td>张良川</td> <td>良 (十四)</td> <td>吴琴</td> <td>1962.6.11生。庆江之父。</td>
-                        </tr>
+                    <tbody class="text-center">
+                        <tr><td class="p-2 border">十代</td><td class="p-2 border font-bold">张文值</td><td class="p-2 border font-bold text-pink-600">夏氏</td><td class="p-2 border text-left text-xs">28岁病故，夏氏抚孤成人。</td></tr>
+                        <tr><td class="p-2 border">十一代</td><td class="p-2 border font-bold">张世卓</td><td class="p-2 border font-bold text-pink-600">熊氏、周氏</td><td class="p-2 border text-left text-xs">文值次子。</td></tr>
+                        <tr><td class="p-2 border">十二代</td><td class="p-2 border font-bold">张代辉</td><td class="p-2 border font-bold text-pink-600">孙嘉碧</td><td class="p-2 border text-left text-xs">1907-1975。</td></tr>
+                        <tr><td class="p-2 border">十三代</td><td class="p-2 border font-bold">张明照</td><td class="p-2 border font-bold text-pink-600">熊运碧</td><td class="p-2 border text-left text-xs">1926-1989。</td></tr>
                     </tbody>
                 </table>
             </div>
-            
-            <div class="mt-8 text-center">
-                <p class="text-gray-500 text-sm">（以上表格仅列出了部分关键数据，完整数据请参见整理人提供的原始表1-表5）。</p>
-            </div>
         </section>
-
     </main>
 
-    <footer class="clan-header mt-20 py-10 text-center">
-        <p>© 2010 - 2026 张氏家族 · 此电子版本由人工智能汇编而成</p>
-        <p class="text-sm mt-2 opacity-80">愿家族昌隆永万年 · 渠县屏西乡壁峰祠</p>
+    <footer class="bg-gray-800 text-white py-6 text-center text-sm">
+        <p>© 2026 张氏家族电子家谱中心</p>
+        <p class="opacity-50 mt-1">整理人：张明双 · 愿家族昌隆永万年</p>
     </footer>
 
     <script>
+        // Mermaid 初始化配置
         mermaid.initialize({
             startOnLoad: true,
-            theme: 'neutral', /* neutral 比较适合古典和打印 */
-            securityLevel: 'loose',
-            flowchart:{
-                useMaxWidth: false, /* 允许滚动条 */
+            theme: 'base',
+            themeVariables: {
+                lineColor: '#0056b3',      // 父子线条颜色（蓝色）
+                primaryColor: '#ffffff',
+                edgeLabelBackground:'#ffffff',
+                tertiaryColor: '#f4f1ea'
+            },
+            flowchart: {
+                curve: 'stepBefore',      // 核心设置：使用直角阶梯线，线条变直
+                rankSpacing: 40,          // 层级间距
+                nodeSpacing: 30,          // 节点左右间距（缩小宽度）
                 htmlLabels: true
             }
         });
