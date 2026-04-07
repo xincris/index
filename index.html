@@ -3,165 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>张氏电子家谱 - 渠县屏西乡壁峰祠</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <title>张氏族谱世系图</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
-        body { font-family: 'Noto Serif SC', serif; background-color: #f4f1ea; color: #333; }
-        .clan-header { background: #8b0000; color: #d4af37; border-bottom: 5px solid #d4af37; }
-        .section-title { border-left: 8px solid #8b0000; padding-left: 15px; color: #8b0000; font-weight: bold; }
+        :root {
+            --line-color: #e60012;
+            --text-color: #333;
+            --bg-color: #ffffff;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "SimSun", serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            margin: 0;
+        }
+
+        /* 顶部大标题 */
+        .main-title {
+            color: #e60012;
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 8px;
+        }
+
+        .sub-title {
+            font-size: 24px;
+            margin-bottom: 40px;
+            letter-spacing: 4px;
+        }
+
+        /* 族谱容器 */
+        .tree-container {
+            background: var(--bg-color);
+            padding: 50px;
+            border: 2px solid #333;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-width: 800px;
+        }
+
+        /* 每一层（世）的容器 */
+        .family-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* 成员盒子 */
+        .member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 姓名横排 */
+        .name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            white-space: nowrap;
+            margin-bottom: 2px;
+        }
+
+        /* 妻子放在下面 */
+        .spouse {
+            font-size: 14px;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        /* 子女容器 */
+        .children {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px; /* 连线预留空间 */
+            position: relative;
+        }
+
+        /* --- 连线逻辑 --- */
         
-        /* 限制图表容器宽度并允许滚动 */
-        .mermaid-wrapper {
-            width: 100%;
-            max-width: 1000px; /* 限制最大显示宽度 */
-            margin: 0 auto;
+        /* 向下的总干线 */
+        .member::after {
+            content: "";
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            width: 2px;
+            height: 40px;
+            background-color: var(--line-color);
+        }
+
+        /* 如果没有孩子，不显示下划线 */
+        .no-child::after { display: none; }
+
+        /* 横向分布线 */
+        .children::before {
+            content: "";
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 30px);
+            height: 2px;
+            background-color: var(--line-color);
+        }
+
+        /* 单个孩子的垂直连接线 */
+        .child-item {
+            position: relative;
+            padding-top: 0;
+        }
+
+        .child-item::before {
+            content: "";
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background-color: var(--line-color);
+        }
+
+        /* 排行文字标注 */
+        .rank {
+            position: absolute;
+            top: -42px;
+            left: 50%;
+            transform: translateX(-50%);
             background: white;
-            padding: 20px;
-            border: 1px solid #ddd;
-            overflow-x: auto; /* 宽度不够时显示横向滚动条 */
+            font-size: 11px;
+            color: #e60012;
+            padding: 0 2px;
+            white-space: nowrap;
+            z-index: 3;
+        }
+
+        /* 左侧世代标注 */
+        .gen-label {
+            position: absolute;
+            left: -80px;
+            top: 10px;
+            font-weight: bold;
+            color: #333;
+            border: 1px solid #333;
+            padding: 2px 5px;
         }
     </style>
 </head>
-<body class="p-0 m-0 text-sm md:text-base">
+<body>
 
-    <header class="clan-header py-10 text-center">
-        <h1 class="text-3xl md:text-5xl font-bold">张氏电子家谱</h1>
-        <p class="mt-2 opacity-90">四川渠县屏西乡壁峰祠 · 世代传承</p>
-    </header>
+    <div class="main-title">专业族谱定制</div>
+    <div class="sub-title">张氏族谱世系图</div>
 
-    <main class="max-w-5xl mx-auto p-4 md:p-8 space-y-12">
+    <div class="tree-container">
         
-        <section>
-            <h2 class="section-title text-2xl mb-6">📜 家族字辈</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-white p-6 shadow-sm border-t-4 border-red-800">
-                    <p class="font-bold text-red-900 mb-2">前二十代 (入川先祖张玉环作)</p>
-                    <p class="tracking-widest leading-loose text-lg">玉福还相崇，碧思其大文，世代明良庆，人才兆升平</p>
+        <div class="family-group">
+            <div class="gen-label">一世</div>
+            <div class="member">
+                <div class="name">张会山</div>
+                <div class="spouse">李英富、王氏</div>
+            </div>
+
+            <div class="children">
+                <div class="child-item">
+                    <span class="rank">长子</span>
+                    <div class="family-group">
+                        <div class="gen-label">二世</div>
+                        <div class="member">
+                            <div class="name">张金元</div>
+                            <div class="spouse">陈登英</div>
+                        </div>
+                        
+                        <div class="children">
+                            <div class="child-item">
+                                <span class="rank">长子</span>
+                                <div class="member">
+                                    <div class="name">张庆国</div>
+                                    <div class="spouse">任氏、李氏</div>
+                                </div>
+                            </div>
+                            <div class="child-item">
+                                <span class="rank">次子</span>
+                                <div class="member no-child">
+                                    <div class="name">张庆祝</div>
+                                    <div class="spouse">杨氏</div>
+                                </div>
+                            </div>
+                            <div class="child-item">
+                                <span class="rank">三子</span>
+                                <div class="member no-child">
+                                    <div class="name">张庆铃</div>
+                                    <div class="spouse">鲁氏</div>
+                                </div>
+                            </div>
+                            <div class="child-item">
+                                <span class="rank">四子</span>
+                                <div class="member">
+                                    <div class="name">张庆广</div>
+                                    <div class="spouse">霓氏</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-white p-6 shadow-sm border-t-4 border-red-800">
-                    <p class="font-bold text-red-900 mb-2">后二十代 (张代谋等族人1981年议定)</p>
-                    <p class="tracking-widest leading-loose text-lg">本宗荣华远，德先正长延，尚克承光志，昌隆永万年</p>
+
+                <div class="child-item">
+                    <span class="rank">次子</span>
+                    <div class="family-group">
+                        <div class="member">
+                            <div class="name">张申元</div>
+                            <div class="spouse">刘氏</div>
+                        </div>
+                        <div class="children">
+                            <div class="child-item">
+                                <span class="rank">长子</span>
+                                <div class="member">
+                                    <div class="name">张庆方</div>
+                                    <div class="spouse">刘丽香</div>
+                                </div>
+                            </div>
+                            <div class="child-item">
+                                <span class="rank">长女</span>
+                                <div class="member no-child">
+                                    <div class="name">张晓彤</div>
+                                    <div class="spouse">李秉义</div>
+                                </div>
+                            </div>
+                            <div class="child-item">
+                                <span class="rank">次子</span>
+                                <div class="member no-child">
+                                    <div class="name">张庆武</div>
+                                    <div class="spouse">郑氏</div>
+                                </div>
+                            </div>
+                            <div class="child-item">
+                                <span class="rank">次女</span>
+                                <div class="member no-child">
+                                    <div class="name">张晓虹</div>
+                                    <div class="spouse">周秉琨</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <section>
-            <h2 class="section-title text-2xl mb-4">🌳 家族谱系图 (直线架构)</h2>
-            <p class="text-xs text-gray-500 mb-4">* 线条采用直角连接，蓝色为父子线，粉色为夫妻关系。左右拖动可查看全貌。</p>
-            
-            <div class="mermaid-wrapper">
-                <div class="mermaid">
-graph TD
-    %% 全局配置：使用直角连线
-    %% 尽量让节点紧凑
-    
-    %% 定义节点样式
-    classDef main fill:#8b0000,color:#fff,stroke:#000,stroke-width:1px;
-    classDef spouse fill:#fff,color:#d63384,stroke:#d63384,stroke-width:1px,stroke-dasharray: 2;
+    <p style="margin-top: 40px; color: #999; font-size: 14px;">注：由于篇幅限制，代码仅展示前三世及主要分支逻辑。您可参照格式继续向下添加 div 节点。</p>
 
-    %% --- 辈分层级 ---
-    Q勤[其字辈: 张其勤]:::main
-    
-    Q勤 --> D霖[大霖]:::main
-    Q勤 --> D金[大金]:::main
-    Q勤 --> D千[大千]:::main
-
-    D霖 --> W值[文值]:::main
-    D霖 --> W行[文行]:::main
-
-    W值 --- 夏氏(妻: 夏氏):::spouse
-    W值 --> S立[世立]:::main
-    W值 --> S卓[世卓]:::main
-
-    S立 --- 范氏(妻: 范氏):::spouse
-    S立 --> 代1[代芳]
-    S立 --> 代2[代芬]
-    S立 --> 代3[祥云]
-    S立 --> 代4[代裔]
-
-    S卓 --- 熊周(妻: 熊/周氏):::spouse
-    S卓 --> 辉[代辉]:::main
-    S卓 --> 学[代学]
-    S卓 --> 平[代平]
-    S卓 --> 顺[代顺]
-
-    辉 --- 孙氏(妻: 孙嘉碧):::spouse
-    辉 --> 照[明照]:::main
-    辉 --> 荣[绍荣]
-    辉 --> 秀(明秀女)
-
-    照 --- 熊碧(妻: 熊运碧):::spouse
-    照 --> 耕[良耕]:::main
-    照 --> 松[青松]
-    照 --> 建[张建]
-
-    耕 --- 易氏(妻: 易淑英):::spouse
-    耕 --> 庆春[庆春]
-    耕 --> 庆丰[庆丰]
-    耕 --> 庆扬[庆扬]
-
-    建 --- 王氏(妻: 王汝梅):::spouse
-    建 --> 柳[庆柳]
-    建 --> 素(素琼)
-    建 --> 英(庆英)
-
-    荣 --- 桂华(妻: 张桂华):::spouse
-    荣 --> 川[良川]
-    荣 --> 艺[张艺]
-    荣 --> 勇[良勇]
-    荣 --> 策[良策]
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title text-2xl mb-6">👥 核心档案</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full bg-white border">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="p-3 border">辈分</th>
-                            <th class="p-3 border">姓名</th>
-                            <th class="p-3 border">配偶</th>
-                            <th class="p-3 border">备注</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        <tr><td class="p-2 border">十代</td><td class="p-2 border font-bold">张文值</td><td class="p-2 border font-bold text-pink-600">夏氏</td><td class="p-2 border text-left text-xs">28岁病故，夏氏抚孤成人</td></tr>
-                        <tr><td class="p-2 border">十一代</td><td class="p-2 border font-bold">张世卓</td><td class="p-2 border font-bold text-pink-600">熊氏、周氏</td><td class="p-2 border text-left text-xs">文值次子</td></tr>
-                        <tr><td class="p-2 border">十二代</td><td class="p-2 border font-bold">张代辉</td><td class="p-2 border font-bold text-pink-600">孙嘉碧</td><td class="p-2 border text-left text-xs">1907-1975</td></tr>
-                        <tr><td class="p-2 border">十三代</td><td class="p-2 border font-bold">张明照</td><td class="p-2 border font-bold text-pink-600">熊运碧</td><td class="p-2 border text-left text-xs">1926-1989</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-gray-800 text-white py-6 text-center text-sm">
-        <p>© 2026 张氏家族电子家谱中心</p>
-        <p class="opacity-50 mt-1">整理人：张明双 · 愿家族昌隆永万年</p>
-    </footer>
-
-    <script>
-        // Mermaid 初始化配置
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'base',
-            themeVariables: {
-                lineColor: '#0056b3',      // 父子线条颜色（蓝色）
-                primaryColor: '#ffffff',
-                edgeLabelBackground:'#ffffff',
-                tertiaryColor: '#f4f1ea'
-            },
-            flowchart: {
-                curve: 'stepBefore',      // 核心设置：使用直角阶梯线，线条变直
-                rankSpacing: 40,          // 层级间距
-                nodeSpacing: 30,          // 节点左右间距（缩小宽度）
-                htmlLabels: true
-            }
-        });
-    </script>
 </body>
 </html>
