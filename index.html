@@ -8,157 +8,175 @@
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
-        body { font-family: 'Noto Serif SC', serif; background-color: #f4f1ea; color: #333; }
-        .clan-header { background: #8b0000; color: #d4af37; border-bottom: 5px solid #d4af37; }
-        .section-title { border-left: 8px solid #8b0000; padding-left: 15px; color: #8b0000; font-weight: bold; }
+        body { font-family: 'Noto Serif SC', serif; background-color: #f7f5f0; color: #333; }
+        .clan-header { background: #8b0000; color: #d4af37; border-bottom: 4px solid #d4af37; }
+        .section-title { border-left: 6px solid #8b0000; padding-left: 12px; color: #8b0000; font-weight: bold; margin-bottom: 1.5rem; }
         
-        /* 限制图表容器宽度并允许滚动 */
-        .mermaid-wrapper {
+        /* 架构图滚动区域 */
+        .mermaid-scroll-container {
             width: 100%;
-            max-width: 1000px; /* 限制最大显示宽度 */
-            margin: 0 auto;
             background: white;
             padding: 20px;
-            border: 1px solid #ddd;
-            overflow-x: auto; /* 宽度不够时显示横向滚动条 */
+            border: 1px solid #e2e2e2;
+            border-radius: 8px;
+            overflow-x: auto; /* 允许横向滑动查看 */
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
         }
+
+        /* 隐藏子图的边框，仅用于布局 */
+        .mermaid .subgraphLevel { fill: transparent; stroke: transparent; }
     </style>
 </head>
-<body class="p-0 m-0 text-sm md:text-base">
+<body class="p-0 m-0">
 
-    <header class="clan-header py-10 text-center">
-        <h1 class="text-3xl md:text-5xl font-bold">张氏电子家谱</h1>
-        <p class="mt-2 opacity-90">四川渠县屏西乡壁峰祠 · 世代传承</p>
+    <header class="clan-header py-8 text-center shadow-lg">
+        <h1 class="text-3xl md:text-5xl font-bold tracking-widest">张氏电子家谱</h1>
+        <p class="mt-2 text-lg opacity-80 uppercase tracking-widest">渠县屏西乡壁峰祠 · 祖籍湖北麻城</p>
     </header>
 
-    <main class="max-w-5xl mx-auto p-4 md:p-8 space-y-12">
+    <main class="max-w-6xl mx-auto p-4 md:p-10 space-y-12">
         
-        <section>
-            <h2 class="section-title text-2xl mb-6">📜 家族字辈</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-white p-6 shadow-sm border-t-4 border-red-800">
-                    <p class="font-bold text-red-900 mb-2 underline">前二十代 (入川祖作)</p>
-                    <p class="tracking-widest leading-loose text-lg">玉福还相崇，碧思其大文，世代明良庆，人才兆升平。</p>
-                </div>
-                <div class="bg-white p-6 shadow-sm border-t-4 border-red-800">
-                    <p class="font-bold text-red-900 mb-2 underline">后二十代 (1981议定)</p>
-                    <p class="tracking-widest leading-loose text-lg">本宗荣华远，德先正长延，尚克承光志，昌隆永万年。</p>
-                </div>
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 border-l-4 border-red-700 shadow-sm">
+                <h3 class="text-red-900 font-bold mb-3 border-b pb-1">前二十代 (入川祖作)</h3>
+                <p class="text-xl tracking-widest leading-loose">玉福还相崇，碧思其大文，<br>世代明良庆，人才兆升平。</p>
+            </div>
+            <div class="bg-white p-6 border-l-4 border-red-700 shadow-sm">
+                <h3 class="text-red-900 font-bold mb-3 border-b pb-1">后二十代 (1981议定)</h3>
+                <p class="text-xl tracking-widest leading-loose">本宗荣华远，德先正长延，<br>尚克承光志，昌隆永万年。</p>
             </div>
         </section>
 
         <section>
-            <h2 class="section-title text-2xl mb-4">🌳 家族谱系图 (直线架构)</h2>
-            <p class="text-xs text-gray-500 mb-4">* 线条采用直角连接，蓝色为父子线，粉色为夫妻关系。左右拖动可查看全貌。</p>
+            <h2 class="section-title text-2xl">🌳 家族谱系图 (夫妻并列版)</h2>
+            <p class="text-xs text-gray-500 mb-4">* 虚线连接为夫妻（并列显示），实线向下为子女。线条采用阶梯直角设计，无相交。</p>
             
-            <div class="mermaid-wrapper">
+            <div class="mermaid-scroll-container">
                 <div class="mermaid">
 graph TD
-    %% 全局配置：使用直角连线
-    %% 尽量让节点紧凑
+    %% 样式定义
+    classDef male fill:#fdfcf0,stroke:#8b0000,stroke-width:2px,color:#000;
+    classDef female fill:#fff,stroke:#d63384,stroke-width:1px,stroke-dasharray: 5 5,color:#d63384;
+    classDef root fill:#8b0000,stroke:#000,color:#fff;
+
+    %% 节点定义
+    环[入川祖: 张玉环]:::root --> 勤[其字辈: 张其勤]:::male
+
+    勤 --> 霖[大霖]:::male
+    勤 --> 金[大金]:::male
+    勤 --> 千[大千]:::male
+
+    霖 --> 值[文值]:::male
+    霖 --> 行[文行]:::male
+
+    %% 夫妻并列处理 (使用子图强行对齐)
+    subgraph CP1 [ ]
+        direction LR
+        值 --- 夏氏(妻: 夏氏):::female
+    end
     
-    %% 定义节点样式
-    classDef main fill:#8b0000,color:#fff,stroke:#000,stroke-width:1px;
-    classDef spouse fill:#fff,color:#d63384,stroke:#d63384,stroke-width:1px,stroke-dasharray: 2;
+    值 --> 立[世立]:::male
+    值 --> 卓[世卓]:::male
 
-    %% --- 辈分层级 ---
-    Q勤[其字辈: 张其勤]:::main
-    
-    Q勤 --> D霖[大霖]:::main
-    Q勤 --> D金[大金]:::main
-    Q勤 --> D千[大千]:::main
+    subgraph CP2 [ ]
+        direction LR
+        立 --- 范氏(妻: 范氏):::female
+    end
 
-    D霖 --> W值[文值]:::main
-    D霖 --> W行[文行]:::main
+    subgraph CP3 [ ]
+        direction LR
+        卓 --- 熊周(妻: 熊/周氏):::female
+    end
 
-    W值 --- 夏氏(妻: 夏氏):::spouse
-    W值 --> S立[世立]:::main
-    W值 --> S卓[世卓]:::main
+    立 --> 代1[代芳]
+    立 --> 代2[代芬]
+    立 --> 代3[祥云]
+    立 --> 代4[代裔]
 
-    S立 --- 范氏(妻: 范氏):::spouse
-    S立 --> 代1[代芳]
-    S立 --> 代2[代芬]
-    S立 --> 代3[祥云]
-    S立 --> 代4[代裔]
+    卓 --> 辉[代辉]:::male
+    卓 --> 学[代学]
+    卓 --> 平[代平]
+    卓 --> 顺[代顺]
 
-    S卓 --- 熊周(妻: 熊/周氏):::spouse
-    S卓 --> 辉[代辉]:::main
-    S卓 --> 学[代学]
-    S卓 --> 平[代平]
-    S卓 --> 顺[代顺]
+    subgraph CP4 [ ]
+        direction LR
+        辉 --- 孙氏(妻: 孙嘉碧):::female
+    end
 
-    辉 --- 孙氏(妻: 孙嘉碧):::spouse
-    辉 --> 照[明照]:::main
-    辉 --> 荣[绍荣]
+    辉 --> 照[明照]:::male
+    辉 --> 荣[绍荣]:::male
     辉 --> 秀(明秀女)
 
-    照 --- 熊碧(妻: 熊运碧):::spouse
-    照 --> 耕[良耕]:::main
-    照 --> 松[青松]
-    照 --> 建[张建]
+    subgraph CP5 [ ]
+        direction LR
+        照 --- 熊碧(妻: 熊运碧):::female
+    end
 
-    耕 --- 易氏(妻: 易淑英):::spouse
+    照 --> 耕[良耕]:::male
+    照 --> 松[青松]
+    照 --> 建[张建]:::male
+
+    subgraph CP6 [ ]
+        direction LR
+        耕 --- 易氏(妻: 易淑英):::female
+    end
+
+    subgraph CP7 [ ]
+        direction LR
+        建 --- 王氏(妻: 王汝梅):::female
+    end
+
+    荣 --- 桂华(妻: 张桂华):::female
+
     耕 --> 庆春[庆春]
     耕 --> 庆丰[庆丰]
-    耕 --> 庆扬[庆扬]
-
-    建 --- 王氏(妻: 王汝梅):::spouse
+    
     建 --> 柳[庆柳]
     建 --> 素(素琼女)
     建 --> 英(庆英女)
 
-    荣 --- 桂华(妻: 张桂华):::spouse
     荣 --> 川[良川]
     荣 --> 艺[张艺]
-    荣 --> 勇[良勇]
-    荣 --> 策[良策]
                 </div>
             </div>
         </section>
 
-        <section>
-            <h2 class="section-title text-2xl mb-6">👥 核心档案</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full bg-white border">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="p-3 border">辈分</th>
-                            <th class="p-3 border">姓名</th>
-                            <th class="p-3 border">配偶</th>
-                            <th class="p-3 border">备注</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        <tr><td class="p-2 border">十代</td><td class="p-2 border font-bold">张文值</td><td class="p-2 border font-bold text-pink-600">夏氏</td><td class="p-2 border text-left text-xs">28岁病故，夏氏抚孤成人。</td></tr>
-                        <tr><td class="p-2 border">十一代</td><td class="p-2 border font-bold">张世卓</td><td class="p-2 border font-bold text-pink-600">熊氏、周氏</td><td class="p-2 border text-left text-xs">文值次子。</td></tr>
-                        <tr><td class="p-2 border">十二代</td><td class="p-2 border font-bold">张代辉</td><td class="p-2 border font-bold text-pink-600">孙嘉碧</td><td class="p-2 border text-left text-xs">1907-1975。</td></tr>
-                        <tr><td class="p-2 border">十三代</td><td class="p-2 border font-bold">张明照</td><td class="p-2 border font-bold text-pink-600">熊运碧</td><td class="p-2 border text-left text-xs">1926-1989。</td></tr>
-                    </tbody>
-                </table>
+        <section class="bg-white p-8 shadow-sm rounded-lg border border-gray-100">
+            <h2 class="section-title text-2xl font-bold">📖 家族源流档案</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-relaxed">
+                <div class="space-y-3">
+                    <p><strong>祖籍：</strong> 湖北省麻城县孝感乡高堦詹。</p>
+                    <p><strong>入川：</strong> 张献忠令祖入川，落籍四川成都、渠县等地。</p>
+                    <p><strong>迁徙：</strong> 南坝三房张其勤后代定居于太阳山张家沟、曹家巷。</p>
+                </div>
+                <div class="bg-red-50 p-4 rounded border border-red-100">
+                    <p class="font-bold text-red-800 mb-1">特别备注：</p>
+                    <p>十代孙<strong>张文值</strong>英年早逝（28岁），其子世立、世卓由遗孀<strong>夏氏</strong>独自抚养成人。族人当铭记其贤德。</p>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-6 text-center text-sm">
+    <footer class="bg-gray-800 text-gray-400 py-8 text-center text-xs">
         <p>© 2026 张氏家族电子家谱中心</p>
-        <p class="opacity-50 mt-1">整理人：张明双 · 愿家族昌隆永万年</p>
+        <p class="mt-2">核实整理：张明双 (2010) · 技术维护：GitHub Pages</p>
     </footer>
 
     <script>
-        // Mermaid 初始化配置
         mermaid.initialize({
             startOnLoad: true,
             theme: 'base',
             themeVariables: {
-                lineColor: '#0056b3',      // 父子线条颜色（蓝色）
+                lineColor: '#666',         // 连线颜色
                 primaryColor: '#ffffff',
                 edgeLabelBackground:'#ffffff',
-                tertiaryColor: '#f4f1ea'
+                tertiaryColor: '#f7f5f0'
             },
             flowchart: {
-                curve: 'stepBefore',      // 核心设置：使用直角阶梯线，线条变直
-                rankSpacing: 40,          // 层级间距
-                nodeSpacing: 30,          // 节点左右间距（缩小宽度）
+                curve: 'stepBefore',      // 关键：强制使用直角阶梯连线
+                rankSpacing: 50,          // 上下层级间距
+                nodeSpacing: 20,          // 左右节点间距（越小图越窄）
+                padding: 15,
                 htmlLabels: true
             }
         });
